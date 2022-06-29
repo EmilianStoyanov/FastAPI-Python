@@ -60,7 +60,7 @@ def create_item(item_id: int, item: Item):
 @app.put("/update-item/{item_id}")
 def update_item(item_id: int, item: UpdateItem):
     if item_id not in inventory:
-
+        raise HTTPException(status_code=404, detail="Item ID does not exist.")
 
     if item.name != None:
         inventory[item_id].name = item.name
